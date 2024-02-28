@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz-gen</title>
+    <link rel="stylesheet" href="style-quizgen.css">
+</head>
+<body>
+    <div class="page">
+            <div class="navbar">
+               <h1> Quiz Generator</h1>
+            </div>
+            <div class="black-container">
+    <div class="question-container">
+        
+        <div class="question" id="question1">
+            <h2>Question 1</h2>
+            <label for="question1">Question:</label><br>
+            <input type="text" id="question1" name="question1" required><br><br>
+    
+            <label for="option1_1">Option 1:</label><br>
+            <input type="text" id="option1_1" name="option1_1" required><br>
+    
+            <label for="option1_2">Option 2:</label><br>
+            <input type="text" id="option1_2" name="option1_2" required><br>
+    
+            <label for="option1_3">Option 3:</label><br>
+            <input type="text" id="option1_3" name="option1_3" required><br>
+    
+            <label for="option1_4">Option 4:</label><br>
+            <input type="text" id="option1_4" name="option1_4" required><br><br>
+    
+            <label for="correctAnswer1">Correct Answer:</label><br>
+            <select id="correctAnswer1" name="correctAnswer1" required>
+                <option value="">Select correct answer</option>
+                <option value="option1_1">Option 1</option>
+                <option value="option1_2">Option 2</option>
+                <option value="option1_3">Option 3</option>
+                <option value="option1_4">Option 4</option>
+            </select><br><br>
+        </div>
+    </div>
+    
+    </div>
+    <div class="button">
+    <button onclick="addQuestion()" style="width: 6rem;margin-right: 0.5rem;;">Add Another Question</button>    
+    <input type="submit" value="Submit" id="submit" style="width: 5rem; border-radius: 0%; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, rgb(255, 8, 33), rgb(255, 28, 164));; color: aliceblue;border: 2px solid rgb(0, 0, 0);">
+    <button  style="width: 6rem;margin-right: 0.5rem;margin-left:0.5rem ;">Show Preview</button>
+       
+</div>
+</div>
+
+
+    <script>
+        let questionCount = 1;
+
+        function addQuestion() {
+    questionCount++;
+    const questionContainer = document.querySelector('.question-container');
+    const newQuestion = document.createElement('div');
+    newQuestion.classList.add('question');
+    newQuestion.setAttribute('id', 'question' + questionCount);
+    newQuestion.innerHTML = `
+        
+        <h2>Question ${questionCount}</h2>
+        <label for="question${questionCount}">Question:</label><br>
+        <input type="text" id="question${questionCount}" name="question${questionCount}" required><br><br>
+
+        <label for="option${questionCount}_1">Option 1:</label><br>
+        <input type="text" id="option${questionCount}_1" name="option${questionCount}_1" required><br>
+
+        <label for="option${questionCount}_2">Option 2:</label><br>
+        <input type="text" id="option${questionCount}_2" name="option${questionCount}_2" required><br>
+
+        <label for="option${questionCount}_3">Option 3:</label><br>
+        <input type="text" id="option${questionCount}_3" name="option${questionCount}_3" required><br>
+
+        <label for="option${questionCount}_4">Option 4:</label><br>
+        <input type="text" id="option${questionCount}_4" name="option${questionCount}_4" required><br><br>
+
+        <label for="correctAnswer${questionCount}">Correct Answer:</label><br>
+        <select id="correctAnswer${questionCount}" name="correctAnswer${questionCount}" required>
+            <option value="">Select correct answer</option>
+            <option value="option${questionCount}_1">Option 1</option>
+            <option value="option${questionCount}_2">Option 2</option>
+            <option value="option${questionCount}_3">Option 3</option>
+            <option value="option${questionCount}_4">Option 4</option>
+        </select><br><br>
+        
+    `;
+    questionContainer.appendChild(newQuestion);
+    
+    // Scroll to the newly added question
+    newQuestion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Initialize ArrayWQ outside the function
+let ArrayWQ = [];
+
+// Function to add questions to the ArrayWQ array
+function addToArrays() {
+    for (let i = 1; i <= questionCount; i++) {
+        let dynamicQuestion = "question" + i;
+        let dynamicAnswer = "correctAnswer" + i;
+
+        let questionValue = document.querySelector(`input[name="${dynamicQuestion}"]`).value;
+        console.log(questionValue);
+
+        let answerValue = document.getElementById(dynamicAnswer).value;
+
+        let question = {
+            question: questionValue,
+            answer: answerValue
+        };
+
+        ArrayWQ.push(question);
+    }
+}
+
+// Add event listener to the "submit" button
+document.getElementById("submit").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    addToArrays(); // Call the addToArrays function
+    console.log(ArrayWQ)
+});
+
+
+    </script>
+</body>
+</html>

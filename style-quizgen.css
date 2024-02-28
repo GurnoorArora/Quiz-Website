@@ -1,0 +1,77 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(16, 28, 74);
+    background: linear-gradient(to bottom, rgb(6, 11, 34), rgb(98, 128, 250));
+    /* Fallback color if the gradient is not supported */
+    background-color: rgb(16, 28, 74);
+    /* Ensure the gradient covers the entire viewport */
+    min-height: 100vh;
+    /* Additional styles to ensure content is visible on top of the gradient */
+    color: #fff;
+}
+
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(background.jpg);
+    background-size: cover;
+    filter: blur(15px); /* Apply the blur effect */
+    z-index: -1; /* Ensure the background blur is behind other content */
+}
+
+.navbar {
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.black-container
+{
+    display: flex;
+    justify-content: center;
+}
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+   
+    width: 300px;
+    
+    
+    
+}
+
+
+
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.button button {
+    background: linear-gradient(to bottom, rgb(255, 8, 33), rgb(255, 28, 164));
+    border-radius: 0;
+    color: white;
+    border: 2px solid rgb(0, 0, 0);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
